@@ -1,7 +1,6 @@
 var webpack = require("webpack");
 
 const path = require('path');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
 
@@ -30,7 +29,13 @@ module.exports = {
         test: /\.scss$/,
         use: [
           {
-            loader:  MiniCssExtractPlugin.loader // creates style nodes from JS strings
+            loader: 'file-loader',
+            options: {
+              name: '[name].css',
+            }
+          },
+          {
+            loader: 'extract-loader'
           },
           {
             loader: "css-loader" // translates CSS into CommonJS
@@ -41,15 +46,6 @@ module.exports = {
         ]
       }
     ]
-  },
-
-  plugins: [
-      new MiniCssExtractPlugin({
-          // Options similar to the same options in webpackOptions.output
-          // both options are optional
-          filename: "[name].css",
-          chunkFilename: "[id].css"
-      })
-  ]
+  }
 
 }
