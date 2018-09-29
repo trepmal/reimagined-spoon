@@ -1,5 +1,5 @@
 import React from 'react';
-import DOMPurify from 'DOMPurify'
+const DOMPurify = require('dompurify');
 
 
 class UseDOMPurify extends React.Component {
